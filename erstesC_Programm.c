@@ -5,45 +5,28 @@
     #include <unistd.h>
 
     int main() {
-        printf("Hello World!\n");
+        char userinput;
+        srand(time(NULL) * clock());
+        printf("Willst du ein Spiel spielen? y/n   \n");
+        scanf(" %c", &userinput);
 
-        //Kommentar
+        while (userinput != 'n'){
+            int zufallszahl = rand() % 2;
+            printf("Gib eine zahl zwischen 0 und 1 ein: \n");
+            int meine_Wahl;
+            scanf("%i", &meine_Wahl);
 
-        int mehrere_Zahlen[10];
+            if (meine_Wahl == zufallszahl){
+                printf("Du hast gewonnen. Die Zahl war: %i \n", zufallszahl);
+            }
+            else{
+                printf("Du hast verloren. Die Zahl war: %i \n", zufallszahl);
+            }
+            printf("Willst du noch ein Spiel spielen? y/n   \n");
+            scanf(" %c", &userinput);
 
-        mehrere_Zahlen[0] = 1;
-        mehrere_Zahlen[1] = 4;
 
-        printf("Die erste Zahl ist %d, die zweite Zahl ist %d \n", mehrere_Zahlen[0], mehrere_Zahlen[1]);
-        printf("Die Speicher-Adresse der ersten Zahl ist %d\n\n", &mehrere_Zahlen[0]);
-
-        srand(time(NULL));
+        }
         
-        for (int i=0; i<10; i++){
-            rand();
-        };
-
-        
-
-        int zufallszahl = rand() % 2;
-        printf("Die Zufallszahl ist %d", zufallszahl);
-
-
-        int meine_Zahl;
-
-        printf("Gib eine Zahl zwischen 0 und 1 ein: \n");
-        scanf("%d", &meine_Zahl);
-
-        if (meine_Zahl == zufallszahl){
-            printf("Gewonnen");
-        }else{
-            printf("Verloren");
-        };
-
-        
-
-
-        
-
         return 0;
     }
