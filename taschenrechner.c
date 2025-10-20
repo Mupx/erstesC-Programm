@@ -1,10 +1,22 @@
 #include <stdio.h>
-
+#include <stdbool.h> 
+#include <ctype.h>
 
 
 
 
 double berechnung(double zahl1, double zahl2, char operator){
+
+    while (operator != '+' && operator != '-' && operator != '*' && operator != '/'){
+        printf("Der Operator muss entweder +, -, * oder / sein. Bitte gib einen gueltigen Operator ein: \n");
+        scanf(" %c", &operator);
+    }
+
+   while (operator == '/' && zahl2 == 0){
+    printf("Du kannst nicht durch 0 teilen.\n");
+    printf("Gib eine andere Zahl ein: \n");
+    scanf("%lf", &zahl2);
+   }
 
     switch(operator){
         case '+':
@@ -24,22 +36,41 @@ double berechnung(double zahl1, double zahl2, char operator){
 
 int main(){
 
-    double zahl1;
-    double zahl2;
-    char operator;
+    bool beenden = false;
 
-    printf("Gib eine Zahl ein: \n");
-    scanf(" %lf", &zahl1);
+    while(beenden == false){
+        double zahl1;
+        double zahl2;
+        char operator;
 
-    printf("Welchen Operator willst du verwenden: \n");
-    scanf(" %c", &operator);
+        printf("Gib eine Zahl ein: \n");
+        scanf(" %lf", &zahl1);
 
-    printf("Gib deine zweite Zahl ein: \n");
-    scanf(" %lf", &zahl2);
+        printf("Welchen Operator willst du verwenden: \n");
+        scanf(" %c", &operator);
 
-    double ergebnis = berechnung(zahl1, zahl2, operator);
+        printf("Gib deine zweite Zahl ein: \n");
+        scanf(" %lf", &zahl2);
 
-    printf("%lf", ergebnis);
+        double ergebnis = berechnung(zahl1, zahl2, operator);
+
+        printf("Das Ergebnis ist: %.2lf\n", ergebnis);
+
+        printf("Willst du eine weitere Berechnung durchführen? \n");
+        printf("y/n\n");
+
+        char weitere_Rechnung;
+        scanf(" %c", &weitere_Rechnung);
+
+        weitere_Rechnung = tolower(weitere_Rechnung);
+
+        if(weitere_Rechnung == 'n'){
+            beenden = true;
+        }
+
+        
+    }
+
 
     return 0;
 }
